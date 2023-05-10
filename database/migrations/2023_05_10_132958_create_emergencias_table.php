@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('emergencias', function (Blueprint $table) {
             $table->id();
+
+            $table->string('nombre');
+            $table->string('color');
+            $table->string('color2');
+
             $table->timestamps();
         });
     }
