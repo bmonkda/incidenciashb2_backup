@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Statu extends Model
 {
     use HasFactory;
+
+    protected $attributes = [
+        'color' => null,
+
+    ];
+
+    protected $fillable = ['nombre'];
+
+    // Relación uno a muchos
+
+    public function incidencias(){
+        return $this->hasMany(Incidencia::class);
+    }
+
 }
