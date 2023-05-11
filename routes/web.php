@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\SubcategoriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,9 @@ Route::get('/', function () {
 
 
 Route::resource('/incidencias', IncidenciaController::class)->names('incidencias');
+Route::prefix('administrador')->group(function () {
+    Route::resource('/categorias', CategoriaController::class);
+    Route::resource('/subcategorias', SubcategoriaController::class);
+
+});
+

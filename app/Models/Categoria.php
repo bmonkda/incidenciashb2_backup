@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Categoria extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id';
 
     protected $fillable = ['nombre', 'slug'];
 
     // para url amigable
 
-    public function getRouteKeyName()
+    /*public function getRouteKeyName()
     {
         return 'slug';
-    }
+    }*/
 
     // Relación uno a muchos
 

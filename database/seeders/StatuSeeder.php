@@ -17,25 +17,25 @@ class StatuSeeder extends Seeder
     {
         
         $statu = Statu::create([
-            'name' => 'EN ESPERA',
+            'nombre' => 'EN ESPERA',
             'color' => 'warning',
             'color2' => 'yellow',
         ]);
 
         $statu = Statu::create([
-            'name' => 'ASIGNADA',
+            'nombre' => 'ASIGNADA',
             'color' => 'primary',
             'color2' => 'blue',
         ]);
 
         $statu = Statu::create([
-            'name' => 'CERRADA (RESUELTA)',
+            'nombre' => 'CERRADA (RESUELTA)',
             'color' => 'success',
             'color2' => 'green',
         ]);
         
         $statu = Statu::create([
-            'name' => 'CERRADA (NO RESUELTA)',
+            'nombre' => 'CERRADA (NO RESUELTA)',
             'color' => 'danger',
             'color2' => 'red',
         ]);

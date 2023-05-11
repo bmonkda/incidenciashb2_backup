@@ -14,7 +14,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Categoria::all();
+        return view('admin.categorias.page', compact('categorias'));
     }
 
     /**
@@ -24,7 +25,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categorias.create');
+
     }
 
     /**
@@ -35,7 +37,19 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre'=>'required|unique:categorias,nombre',
+            'ruta'=>'required|unique:categorias,slug',
+
+        ]);
+
+        $categoria = new Categoria;
+        $categoria->nombre = $request->nombre;
+        $categoria->slug = $request->ruta;
+
+        $categoria->save();
+
+        return redirect()->route('categorias.index')->with('status', 'Categoria creada satisfactoriamente');
     }
 
     /**
@@ -46,7 +60,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        return view('admin.categorias.show', compact('categoria'));
     }
 
     /**
@@ -57,7 +71,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('admin.categorias.edit', compact('categoria'));
     }
 
     /**
@@ -69,7 +83,16 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $request->validate([
+            'nombre'=>'required',
+            'ruta'=>'required',
+
+        ]);
+        $categoria->nombre = $request->nombre;
+        $categoria->slug = $request->ruta;
+
+        $categoria->save();
+        return redirect()->route('categorias.index')->with('status', 'Categoria editada satisfactoriamente');
     }
 
     /**
