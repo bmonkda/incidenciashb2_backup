@@ -11,6 +11,7 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    @yield('styles')
 
     <style>
         /*
