@@ -69,10 +69,10 @@ class StatuController extends Controller
      * @param  \App\Models\Statu  $statu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Statu $statu)
+    public function edit($stat)
     {
-        $stat = Statu::where('id', $statu)->first();
-        dd($stat);
+        $statu = Statu::find($stat);
+
         return view('admin.estatus.edit', compact('statu'));
     }
 
