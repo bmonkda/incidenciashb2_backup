@@ -60,7 +60,7 @@ class SubcategoriaController extends Controller
      */
     public function show(Subcategoria $subcategoria)
     {
-        //
+        return view('admin.subcategorias.show', compact('subcategoria'));
     }
 
     /**
@@ -71,7 +71,9 @@ class SubcategoriaController extends Controller
      */
     public function edit(Subcategoria $subcategoria)
     {
-        //
+
+        $categorias = Categoria::all();
+        return view('admin.subcategorias.edit', compact('subcategoria', 'categorias'));
     }
 
     /**
@@ -83,7 +85,16 @@ class SubcategoriaController extends Controller
      */
     public function update(Request $request, Subcategoria $subcategoria)
     {
-        //
+        $request->validate([
+            'id_categoria' => 'required',
+            'nombre' => 'required|unique:subcategorias,nombre'
+        ]);
+        $subcategoria->nombre = $request->nombre;
+        $subcategoria->categoria_id = $request->id_categoria;
+
+        $subcategoria->save();
+        return redirect()->route('subcategorias.index')->with('status', 'Subcategoria Editada satisfactoriamente');
+
     }
 
     /**

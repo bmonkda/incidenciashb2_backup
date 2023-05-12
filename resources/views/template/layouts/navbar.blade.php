@@ -7,13 +7,13 @@
                 <a class="navbar-brand" href="index.html"><img alt="logo" src="#"> <span class="navbar-brand-name">INCIDENCIAS</span></a>
             </div>  -->
             <div class="nav-logo align-self-center">
-                <a class="navbar-brand" href="index.html"><span class="navbar-brand-name">INCIDENCIAS</span></a>
+                <a class="navbar-brand" href="/"><span class="navbar-brand-name">Gestor de incidencias Hidrobolivar</span></a>
             </div>
             <ul class="navbar-item flex-row nav-dropdowns ml-auto">
                 <li class="nav-item dropdown user-profile-dropdown order-lg-0 order-1">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media">
-                            <img src="assets/img/90x90.jpg" class="img-fluid" alt="admin-profile">
+                            <img src="{{asset('template/assets/img/image(22) .png')}}" style="width: 35px" class="img-fluid bg-info" alt="admin-profile">
                             <div class="media-body align-self-center">
                                 <h6><span>Hi,</span> Alan</h6>
                             </div>

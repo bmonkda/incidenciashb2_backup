@@ -1,6 +1,16 @@
-var cSpeed = 6000;
+var cSpeed = 600;
 
 // Simple Counter
+
+var value = $('.s-counter1').text();
+$('.s-counter1').countTo({
+    from: 0,
+    to: value,
+    speed: cSpeed,
+    formatter: function (value, options) {
+        return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+    }
+});
 
 var value = $('.s-counter2').text();
 $('.s-counter2').countTo({
@@ -29,7 +39,15 @@ $('.s-counter4').countTo({
         return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
     }
 });
-
+var value = $('.s-counter5').text();
+$('.s-counter5').countTo({
+    from: 0,
+    to: value,
+    speed: cSpeed,
+    formatter: function (value, options) {
+        return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+    }
+});
 
 // With Icon
 
