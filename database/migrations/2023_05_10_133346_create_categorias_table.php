@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('nombre');
             $table->string('slug'); 
+            $table->smallInteger('status')->default(1); // 0: inactivo 1: activo. Por defecto al crearse será activo
 
             $table->timestamps();
         });

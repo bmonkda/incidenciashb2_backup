@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Emergencia extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nombre', 'color',  'color2', 'status'];
 }

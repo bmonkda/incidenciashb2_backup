@@ -14,7 +14,7 @@ class Statu extends Model
 
     ];
 
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nombre', 'color',  'color2', 'status'];
 
     // Relación uno a muchos
 

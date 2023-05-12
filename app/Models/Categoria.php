@@ -10,7 +10,7 @@ class Categoria extends Model
     use HasFactory;
     protected $primaryKey = 'id';
 
-    protected $fillable = ['nombre', 'slug'];
+    protected $fillable = ['nombre', 'slug', 'status'];
 
     // para url amigable
 
