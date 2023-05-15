@@ -21,7 +21,7 @@
                 <span class="input-group-text">Primer y segundo color</span>
             </div>
             <input type="text" class="form-control" id="color1" name="color1" placeholder="Color" value="{{old('color1', $emergencia->color ?? '')}}">
-            <input type="color" class="form-control" id="color2" name="color2" placeholder="" value="{{old('color2', $statu->color2 ?? '')}}">
+            <input type="color" class="form-control" id="color2" name="color2" placeholder="" value="{{old('color2', $emergencia->color2 ?? '')}}">
         </div>
 
         <div class="form-group pt-2">
