@@ -14,7 +14,8 @@ class EmergenciaController extends Controller
      */
     public function index()
     {
-        //
+        $emergencias = Emergencia::all();
+        return view('admin.emergencias.page', compact('emergencias'));
     }
 
     /**
@@ -24,7 +25,8 @@ class EmergenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.emergencias.create');
+        
     }
 
     /**
@@ -35,7 +37,20 @@ class EmergenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|unique:emergencias,nombre',
+            'color1' => 'required|unique:emergencias,color',
+            'color2' => 'required|unique:emergencias,color2',
+        ]);
+
+        $emergencia = new Emergencia;
+        $emergencia->nombre = $request->nombre;
+        $emergencia->color = $request->color1;
+        $emergencia->color2 = $request->color2;
+
+        $emergencia->save();
+
+        return redirect()->route('emergencias.index')->with('status', 'Emergencia creada satisfactoriamente');        
     }
 
     /**
@@ -57,7 +72,7 @@ class EmergenciaController extends Controller
      */
     public function edit(Emergencia $emergencia)
     {
-        //
+        return view('admin.emergencias.edit', compact('emergencia'));
     }
 
     /**
@@ -69,7 +84,16 @@ class EmergenciaController extends Controller
      */
     public function update(Request $request, Emergencia $emergencia)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'color1' => 'required',
+            'color2' => 'required',
+        ]);
+
+        if($emergencia->nombre != $request->nombre && $emergencia->color != $request->color1 && $emergencia->color2 != $request->color2) {
+            $emergencia->save();
+        }
+
     }
 
     /**

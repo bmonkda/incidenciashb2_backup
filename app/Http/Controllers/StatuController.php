@@ -14,7 +14,8 @@ class StatuController extends Controller
      */
     public function index()
     {
-        //
+        $estatus = Statu::all();
+        return view('admin.estatus.page', compact('estatus'));
     }
 
     /**
@@ -24,7 +25,7 @@ class StatuController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.estatus.create');
     }
 
     /**
@@ -35,7 +36,20 @@ class StatuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|unique:status,nombre',
+            'color1' => 'required|unique:status,color',
+            'color2' => 'required|unique:status,color2',
+        ]);
+
+        $statu = new Statu;
+        $statu->nombre = $request->nombre;
+        $statu->color = $request->color1;
+        $statu->color2 = $request->color2;
+
+        $statu->save();
+
+        return redirect()->route('estatus.index')->with('status', 'Estatus creado satisfactoriamente');
     }
 
     /**
@@ -55,9 +69,11 @@ class StatuController extends Controller
      * @param  \App\Models\Statu  $statu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Statu $statu)
+    public function edit($stat)
     {
-        //
+        $statu = Statu::find($stat);
+
+        return view('admin.estatus.edit', compact('statu'));
     }
 
     /**
