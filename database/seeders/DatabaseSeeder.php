@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Incidencia;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,5 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->call(EmergenciaSeeder::class);
 
         $this->call(StatuSeeder::class);
+
+        // $this->call(IncidenciaSeeder::class);
+
+        Incidencia::factory(300)->create();
     }
 }
