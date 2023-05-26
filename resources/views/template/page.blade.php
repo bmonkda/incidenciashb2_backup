@@ -52,7 +52,7 @@
                                             <td>{{$creada->id}}</td>
                                             <td>{{$creada->titulo}}</td>
                                             <td>{{$creada->descripcion}}</td>
-                                            <td class="text-center"><span class="badge outline-badge-primary"> {{$creada->estatus->nombre}} </span></td>
+                                            <td class="text-center"><span class="badge outline-badge-primary"> {{$creada->statu->nombre}} </span></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -110,7 +110,7 @@
                                             <td>{{$creada->id}}</td>
                                             <td>{{$creada->titulo}}</td>
                                             <td>{{$creada->descripcion}}</td>
-                                            <td class="text-center"><span class="badge badge-warning"> {{$creada->estatus->nombre}} </span></td>
+                                            <td class="text-center"><span class="badge badge-warning"> {{$creada->statu->nombre}} </span></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -168,7 +168,7 @@
                                             <td>{{$creada->id}}</td>
                                             <td>{{$creada->titulo}}</td>
                                             <td>{{$creada->descripcion}}</td>
-                                            <td class="text-center"><span class="badge badge-primary"> {{$creada->estatus->nombre}} </span></td>
+                                            <td class="text-center"><span class="badge badge-primary"> {{$creada->statu->nombre}} </span></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -226,7 +226,7 @@
                                             <td>{{$creada->id}}</td>
                                             <td>{{$creada->titulo}}</td>
                                             <td>{{$creada->descripcion}}</td>
-                                            <td class="text-center"><span class="badge badge-success"> {{$creada->estatus->nombre}} </span></td>
+                                            <td class="text-center"><span class="badge badge-success"> {{$creada->statu->nombre}} </span></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -284,7 +284,7 @@
                                             <td>{{$creada->id}}</td>
                                             <td>{{$creada->titulo}}</td>
                                             <td>{{$creada->descripcion}}</td>
-                                            <td class="text-center"><span class="badge badge-danger"> {{$creada->estatus->nombre}} </span></td>
+                                            <td class="text-center"><span class="badge badge-danger"> {{$creada->statu->nombre}} </span></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -321,7 +321,7 @@
             <td class="text-dark">{{$creada->id}}</td>
             <td class="text-dark">{{$creada->titulo}}</td>
             <td class="text-dark">{{$creada->descripcion}}</td>
-            <td class="text-center"><span class="badge outline-badge-primary" style="background-color: white"> {{$creada->estatus->nombre}} </span></td>
+            <td class="text-center"><span class="badge outline-badge-primary" style="background-color: white"> {{$creada->statu->nombre}} </span></td>
         </tr>
         @endforeach
         </tbody>
