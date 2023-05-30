@@ -54,6 +54,7 @@ Route::get('/', function () {
 
 
 Route::resource('/incidencias', IncidenciaController::class);
+
 Route::prefix('administrador')->group(function () {
     Route::resource('/categorias', CategoriaController::class);
     Route::resource('/subcategorias', SubcategoriaController::class);
