@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\EmergenciaController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Statu;
 use App\Models\Incidencia;
@@ -20,38 +21,39 @@ use App\Models\Incidencia;
 |
 */
 
-Route::get('/', function () {
-    $estatuscreado = Statu::find(1);
-    $estatusespera = Statu::find(2);
-    $estatusaignado = Statu::find(3);
-    $estatuscerrare = Statu::find(4);
-    $estatuscerrano = Statu::find(5);
+// Route::get('/', function () {
+//     $estatuscreado = Statu::find(1);
+//     $estatusespera = Statu::find(2);
+//     $estatusaignado = Statu::find(3);
+//     $estatuscerrare = Statu::find(4);
+//     $estatuscerrano = Statu::find(5);
 
-    $incidenciascreadas = Incidencia::where('statu_id', $estatuscreado->id)->get();
-    $incidenciascreadascount = Incidencia::where('statu_id', $estatuscreado->id)->count();
-    $incidenciasespera = Incidencia::where('statu_id', $estatusespera->id)->get();
-    $incidenciasesperacount = Incidencia::where('statu_id', $estatusespera->id)->count();
-    $incidenciasaignado = Incidencia::where('statu_id', $estatusaignado->id)->get();
-    $incidenciasaignadocount = Incidencia::where('statu_id', $estatusaignado->id)->count();
-    $incidenciascerrare = Incidencia::where('statu_id', $estatuscerrare->id)->get();
-    $incidenciascerrarecount = Incidencia::where('statu_id', $estatuscerrare->id)->count();
-    $incidenciascerrano = Incidencia::where('statu_id', $estatuscerrano->id)->get();
-    $incidenciascerranocount = Incidencia::where('statu_id', $estatuscerrano->id)->count();
+//     $incidenciascreadas = Incidencia::where('statu_id', $estatuscreado->id)->get();
+//     $incidenciascreadascount = Incidencia::where('statu_id', $estatuscreado->id)->count();
+//     $incidenciasespera = Incidencia::where('statu_id', $estatusespera->id)->get();
+//     $incidenciasesperacount = Incidencia::where('statu_id', $estatusespera->id)->count();
+//     $incidenciasaignado = Incidencia::where('statu_id', $estatusaignado->id)->get();
+//     $incidenciasaignadocount = Incidencia::where('statu_id', $estatusaignado->id)->count();
+//     $incidenciascerrare = Incidencia::where('statu_id', $estatuscerrare->id)->get();
+//     $incidenciascerrarecount = Incidencia::where('statu_id', $estatuscerrare->id)->count();
+//     $incidenciascerrano = Incidencia::where('statu_id', $estatuscerrano->id)->get();
+//     $incidenciascerranocount = Incidencia::where('statu_id', $estatuscerrano->id)->count();
 
-    return view('template.page', compact('estatuscreado',
-    'estatusespera',
-    'estatusaignado',
-    'estatuscerrare',
-    'estatuscerrano',
-    'incidenciascreadas','incidenciascreadascount',
-    'incidenciasespera','incidenciasesperacount',
-    'incidenciasaignado','incidenciasaignadocount',
-    'incidenciascerrare','incidenciascerrarecount',
-    'incidenciascerrano','incidenciascerranocount',
+//     return view('template.page', compact('estatuscreado',
+//     'estatusespera',
+//     'estatusaignado',
+//     'estatuscerrare',
+//     'estatuscerrano',
+//     'incidenciascreadas','incidenciascreadascount',
+//     'incidenciasespera','incidenciasesperacount',
+//     'incidenciasaignado','incidenciasaignadocount',
+//     'incidenciascerrare','incidenciascerrarecount',
+//     'incidenciascerrano','incidenciascerranocount',
 
-    ));
-});
+//     ));
+// });
 
+Route::get('/', [HomeController::class,'index'])->name('home')/*->middleware('auth')*/;
 
 Route::resource('/incidencias', IncidenciaController::class);
 
