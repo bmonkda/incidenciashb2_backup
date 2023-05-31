@@ -14,7 +14,11 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::all();
+        $incidencias = Incidencia::with(['statu', 'emergencia', 'categoria', 'subcategoria'])
+                                    // ->where('user_id', 1882) // aqui debe ir el usuario autenticado
+                                    ->get();
+
+        // return $incidencias;    
         
         return view('incidencias.index', compact('incidencias'));
     }
@@ -26,7 +30,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('incidencias.create');
     }
 
     /**
@@ -59,7 +63,7 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
-        //
+        return view('incidencias.edit', compact('incidencia'));
     }
 
     /**
