@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Incidencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
@@ -15,10 +16,10 @@ class IncidenciaController extends Controller
     public function index()
     {
         $incidencias = Incidencia::with(['statu', 'emergencia', 'categoria', 'subcategoria'])
-                                    // ->where('user_id', 1882) // aqui debe ir el usuario autenticado
+                                    ->where('user_id', Auth::user()->idusuario) // id de usuario autenticado
                                     ->get();
 
-        // return $incidencias;    
+        // return $incidencias;
         
         return view('incidencias.index', compact('incidencias'));
     }
