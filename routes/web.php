@@ -53,7 +53,7 @@ use App\Models\Incidencia;
 //     ));
 // });
 
-Route::get('/', [HomeController::class,'index'])->name('home')/*->middleware('auth')*/;
+Route::get('/', [HomeController::class,'index'])->name('home')->middleware('auth');
 
 Route::resource('/incidencias', IncidenciaController::class);
 

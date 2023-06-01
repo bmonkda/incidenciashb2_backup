@@ -10,12 +10,14 @@
     <form action="{{ route('login') }}" method="post">
         @csrf
         
-        <label for="">
-            <input type="email" name="email" id="" placeholder="Email...">
+        <label for="uid">Usuario
+            <input type="text" name="uid" id="uid" placeholder="Usuario..." value="{{ old('uid') }}">
+            @error('uid') <div>{{ $message }}</div> @enderror
         </label>
 
-        <label for="">
-            <input type="password" name="password" id="" placeholder="Password...">
+        <label for="">Password
+            <input type="password" name="password" id="password" placeholder="Password...">
+            @error('password') <div>{{ $message }}</div> @enderror
         </label>
 
         <input type="submit" value="Login">
