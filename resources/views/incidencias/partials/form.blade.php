@@ -2,17 +2,17 @@
     <table id="zero-config" class="table mb-4 contextual-table">
     
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>TÍTULO</th>
-                <th>DESCRIPCIÓN</th>
-                <th>CATEGORÍA</th>
-                <th>SUBCATEGORÍA</th>
+            <tr class="table-dark">
+                <th class="text-dark">ID</th>
+                <th class="text-dark">TÍTULO</th>
+                <th class="text-dark">DESCRIPCIÓN</th>
+                <th class="text-dark">CATEGORÍA</th>
+                <th class="text-dark">SUBCATEGORÍA</th>
             </tr>
         </thead>
 
         <tbody>
-            <tr>
+            <tr class="table-primary">
                 <td>{{ $incidencia->id }}</td>
                 <td>{{ $incidencia->titulo }}</td>
                 <td>{{ $incidencia->descripcion }}</td>
@@ -22,17 +22,17 @@
         </tbody>
 
         <thead>
-            <tr>
-                <th>PRIORIDAD</th>
-                <th>STATUS</th>
-                <th>ASIGNADO A</th>
-                <th>CREADO</th>
-                <th>ACTUALIZADO</th>
+            <tr class="table-dark">
+                <th class="text-dark">PRIORIDAD</th>
+                <th class="text-dark">STATUS</th>
+                <th class="text-dark">ASIGNADO A</th>
+                <th class="text-dark">CREADO</th>
+                <th class="text-dark">ACTUALIZADO</th>
             </tr>
         </thead>
 
         <tbody>
-            <tr>
+            <tr class="table-primary">
                 <td>{{ $incidencia->emergencia->nombre }}</td>
                 <td>{{ $incidencia->statu->nombre }}</td>
                 <td>{{ $incidencia->asignado_id != null ? $incidencia->asignado->nombre : 'Sin asignar' }} </td>
