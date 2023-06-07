@@ -44,6 +44,11 @@ class Incidencia extends Model
         return $this->belongsTo(Subcategoria::class);
     }
 
+    public function asignado() //usuario que asigna la incidencia
+    {
+        return $this->belongsTo(User::class, 'asignado_id', 'idusuario');
+        // return $this->belongsTo(Usuario::class);
+    }
 
 
 }

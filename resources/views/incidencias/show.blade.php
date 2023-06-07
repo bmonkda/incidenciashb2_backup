@@ -19,11 +19,13 @@
 
 @section('content')
 
-<div class="row mt-5">
-    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-        <h4>Detalles de la incidencia</h4> {{ $incidencia }}
+    <div class="row mt-5">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Detalles de la incidencia</h4>
+        </div>
     </div>
-</div>
+
+    @include('incidencias.partials.form')
 
 
 @endsection
