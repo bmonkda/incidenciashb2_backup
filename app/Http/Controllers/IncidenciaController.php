@@ -53,7 +53,7 @@ class IncidenciaController extends Controller
      */
     public function show(Incidencia $incidencia)
     {
-        //
+        return view('incidencias.show', compact('incidencia'));
     }
 
     /**
