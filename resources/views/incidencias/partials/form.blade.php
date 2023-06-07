@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table id="zero-config" class="table mb-4 contextual-table">
+    <table id="" class="table mb-4 contextual-table">
     
         <thead>
             <tr class="table-dark">
