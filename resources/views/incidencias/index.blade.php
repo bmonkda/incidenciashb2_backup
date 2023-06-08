@@ -326,21 +326,21 @@
     <table id="zero-config" class="table mb-4 contextual-table">
         <thead>
         <tr class="table-dark">
-            <th class="text-dark">Nº</th>
-            <th class="text-dark">Titulo</th>
-            <th class="text-dark">Descripcion</th>
-            <th class="{{-- text-center --}} text-dark">Status</th>
-            <th class="text-dark">Acciones</th>
+            <th class="text-center text-dark">Nº</th>
+            <th class="text-center text-dark">Titulo</th>
+            <th class="text-center text-dark">Descripcion</th>
+            <th class="text-center text-dark">Status</th>
+            <th class="text-center text-dark">Acciones</th>
         </tr>
         </thead>
         <tbody>
         @foreach($incidencias as $incidencia)
         <tr class="table-primary">
-            <td class="text-dark">{{$incidencia->id}}</td>
+            <td class="text-center text-dark">{{$incidencia->id}}</td>
             <td class="text-dark">{{$incidencia->titulo}}</td>
             <td class="text-dark">{{$incidencia->descripcion}}</td>
             <td class="text-center"><span class="badge outline-badge-dark{{-- primary --}}" style="background-color: {{$incidencia->statu->color2}}"> {{$incidencia->statu->nombre}} </span></td>
-            <td>
+            <td class="text-center">
                 <a class="bs-tooltip" href="{{route('incidencias.show', $incidencia)}}" title="Mostrar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0960DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                     <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
                     <circle cx="12" cy="12" r="3"></circle>
