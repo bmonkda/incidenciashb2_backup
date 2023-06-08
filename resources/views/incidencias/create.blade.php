@@ -19,11 +19,24 @@
 
 @section('content')
 
-<div class="row mt-5">
-    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-        <h4>Crear incidencia</h4>
+    <div class="row mt-5">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Crear incidencia</h4>
+        </div>
     </div>
-</div>
+
+    <form action="{{route('incidencias.store')}}" method="POST">
+
+        @csrf
+        
+        @include('incidencias.partials.form')
+        
+        <div class="form-group pt-2">
+            <a href="{{route('incidencias.index')}}" class="btn btn-dark">Volver</a>
+            <input class="btn btn-primary" type="submit" value="Guardar">
+        </div>
+
+    </form>
 
 
 @endsection

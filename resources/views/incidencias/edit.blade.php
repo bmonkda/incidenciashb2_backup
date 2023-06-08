@@ -21,7 +21,7 @@
 
 <div class="row mt-5">
     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-        <h4>Editar incidencia</h4> {{ $incidencia }}
+        <h4>Editar incidencia: {{ $incidencia->id }}</h4>
     </div>
 </div>
 
