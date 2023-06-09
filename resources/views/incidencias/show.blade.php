@@ -27,8 +27,8 @@
 
     @include('incidencias.partials.detalle')
     
-    <a href="{{ route('incidencias.index') }}" class="btn btn-sm btn-primary">Regresar</a>
-    <a href="{{ route('incidencias.edit', $incidencia) }}" class="btn btn-sm btn-secondary">Editar</a>
+    <a href="{{ route('incidencias.index') }}" class="btn btn-sm btn-primary" title="Lista de Incidencias">Regresar</a>
+    <a href="{{ route('incidencias.edit', $incidencia) }}" class="btn btn-sm btn-secondary" title="Editar incidencia">Editar</a>
 
 
     <div>
