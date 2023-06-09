@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Emergencia;
 use App\Models\Incidencia;
+use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +33,9 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('incidencias.create');
+        $subcategorias = Subcategoria::with(['categoria'])->get();
+        $emergencias = Emergencia::all();
+        return view('incidencias.create', compact('subcategorias', 'emergencias'));
     }
 
     /**
@@ -42,7 +46,45 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'titulo' => 'required|min:5',
+            'slug' => 'required',
+            'descripcion' => 'required|min:10',
+            'categoria_id' => 'required|exists:categorias,id',
+            'subcategoria_id' => 'required|exists:subcategorias,id',
+            'emergencia_id' => 'required|exists:emergencias,id',
+        ];
+
+        $messages = [
+            'titulo.required' => 'Es necesario ingresar un título para la incidencia',
+            'titulo.min' => 'El título debe contener al menos 5 caracteres',
+            'slug.required' => 'Es necesario ingresar el título',
+            'descripcion.required' => 'Es necesario ingresar una descripcion para la incidencia',
+            'descripcion.min' => 'El descripcion debe contener al menos 10 caracteres',
+            'categoria_id.required' => 'Es necesario seleccionar una categoría',
+            'subcategoria_id.required' => 'Es necesario seleccionar una subcategoría',
+            'emergencia_id.required' => 'Es necesario seleccionar tipo urgencia',
+            
+        ];
+        
+        $this->validate($request, $rules, $messages);
+
+        $incidencia = new Incidencia();
+        $incidencia->titulo = $request->input('titulo');
+        $incidencia->slug = $request->input('slug');
+        $incidencia->descripcion = $request->input('descripcion');
+        $incidencia->categoria_id = $request->input('categoria_id');
+        $incidencia->subcategoria_id = $request->input('subcategoria_id');
+        $incidencia->emergencia_id = $request->input('emergencia_id');
+
+        $incidencia->user_id = auth()->user()->idusuario;
+
+        // $incidencia->saveOrFail();
+
+        return $incidencia;
+
+        return redirect()->route('incidencias.index')->with('info', 'Incidencia creada con éxito');
+
     }
 
     /**
