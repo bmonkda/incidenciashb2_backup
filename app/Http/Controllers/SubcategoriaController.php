@@ -107,4 +107,12 @@ class SubcategoriaController extends Controller
     {
         //
     }
+
+    public function getByCategoria(Categoria $categoria)
+    {
+        $subcategorias = $categoria->subcategorias;
+
+        return response()->json($subcategorias);
+    }
+
 }
