@@ -80,10 +80,10 @@ class IncidenciaController extends Controller
 
         $incidencia->user_id = auth()->user()->idusuario;
 
-        // $incidencia->saveOrFail();
+        $incidencia->saveOrFail();
 
-        return $request;
-        return $incidencia;
+        //return $request;
+        //return $incidencia;
 
         return redirect()->route('incidencias.index')->with('info', 'Incidencia creada con éxito');
 
