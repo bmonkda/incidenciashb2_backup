@@ -48,7 +48,7 @@ class IncidenciaController extends Controller
     {
         $rules = [
             'titulo' => 'required|min:5',
-            'slug' => 'required',
+            'slug' => 'required|min:5',
             'descripcion' => 'required|min:10',
             'categoria_id' => 'required|exists:categorias,id',
             'subcategoria_id' => 'required|exists:subcategorias,id',
@@ -59,6 +59,7 @@ class IncidenciaController extends Controller
             'titulo.required' => 'Es necesario ingresar un título para la incidencia',
             'titulo.min' => 'El título debe contener al menos 5 caracteres',
             'slug.required' => 'Es necesario ingresar el título',
+            'slug.min' => 'El título debe contener al menos 5 caracteres',
             'descripcion.required' => 'Es necesario ingresar una descripcion para la incidencia',
             'descripcion.min' => 'El descripcion debe contener al menos 10 caracteres',
             'categoria_id.required' => 'Es necesario seleccionar una categoría',
@@ -81,6 +82,7 @@ class IncidenciaController extends Controller
 
         // $incidencia->saveOrFail();
 
+        return $request;
         return $incidencia;
 
         return redirect()->route('incidencias.index')->with('info', 'Incidencia creada con éxito');
@@ -106,7 +108,9 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
-        return view('incidencias.edit', compact('incidencia'));
+        $subcategorias = Subcategoria::with(['categoria'])->get();
+        $emergencias = Emergencia::all();
+        return view('incidencias.edit', compact('incidencia','subcategorias', 'emergencias'));
     }
 
     /**

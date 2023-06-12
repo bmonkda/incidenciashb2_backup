@@ -25,8 +25,22 @@
     </div>
 </div>
 
+<form action="{{ route('incidencias.store') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+
+    @csrf
+    
+    @include('incidencias.partials.form')
+    
+    <div class="form-group pt-2">
+        <a href="{{route('incidencias.index')}}" class="btn btn-dark" title="Lista de incidencias">Volver</a>
+        {{-- <input class="btn btn-primary" type="submit" value="Guardar" title="Guardar incidencia"> --}}
+        <button type="submit" class="btn btn-primary" title="Guardar incidencia">Actualizar</button>
+    </div>
+
+</form>
 
 @endsection
+
 
 @section('scripts')
     <script src="{{asset('template/plugins/counter/jquery.countTo.js')}}"></script>
@@ -34,18 +48,62 @@
 
     <script src="{{asset('template/assets/js/elements/tooltip.js')}}"></script>
     <script src="{{asset('template/plugins/table/datatable/datatables.js')}}"></script>
+    
     <script>
-        $('#zero-config').DataTable({
-            "oLanguage": {
-                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "Mostrando pagina _PAGE_ of _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "Buscar...",
-                "sLengthMenu": "Cantidad de resgistros :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [7, 10, 20, 50],
-            "pageLength": 7
+        document.getElementById('categoriaSelect').addEventListener('change', function() {
+            var categoriaId = this.value;
+            var subcategoriaSelect = document.getElementById('subcategoriaSelect');
+            
+            // Limpiar select de subcategorías
+            while (subcategoriaSelect.options.length > 0) {
+                subcategoriaSelect.remove(0);
+            }
+            
+            if (categoriaId !== '') {
+                fetch('/api/subcategorias/' + categoriaId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(function(subcategoria) {
+                            var option = document.createElement('option');
+                            option.value = subcategoria.id;
+                            option.text = subcategoria.id + " - " + subcategoria.nombre;
+                            subcategoriaSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    </script>
+
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tituloInput = document.getElementById('titulo');
+            var slugInput = document.getElementById('slug');
+            
+            tituloInput.addEventListener('keyup', updateSlug);
+            tituloInput.addEventListener('keydown', updateSlug);
+            tituloInput.addEventListener('blur', updateSlug);
+            
+            function updateSlug() {
+                var titulo = tituloInput.value;
+                var slug = stringToSlug(titulo, '-');
+                slugInput.value = slug;
+            }
+
+            function stringToSlug(text, separator) {
+                var slug = text
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "") // Elimina las diacríticas
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, separator)
+                    .replace(new RegExp('^' + separator + '+|' + separator + '+$', 'g'), '');
+                
+                return slug;
+            }
+            
+
         });
     </script>
 

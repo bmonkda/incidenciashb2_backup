@@ -29,7 +29,8 @@
 
         @csrf
         
-        @include('incidencias.partials.form')
+        {{-- @include('incidencias.partials.form') --}}
+        @include('incidencias.partials.form', ['incidencia' => app(App\Models\Incidencia::class)])
         
         <div class="form-group pt-2">
             <a href="{{route('incidencias.index')}}" class="btn btn-dark" title="Lista de incidencias">Volver</a>

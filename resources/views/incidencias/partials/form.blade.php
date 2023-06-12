@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="titulo">Título*:</label>
-    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Ingrese el título de la incidencia">
+    <input type="text" name="titulo" id="titulo" class="form-control @error('titulo') is-invalid @enderror" placeholder="Ingrese el título de la incidencia" value="{{ old('titulo', $incidencia->titulo ?? '') }}">
 
     @error('titulo')
         <small class="text-danger">{{ $message }}</small>
@@ -9,7 +9,7 @@
 
 <div class="form-group">
     <label for="slug">Slug:</label>
-    <input type="text" name="slug" id="slug" class="form-control" {{-- value="{{ $slug }}" --}} placeholder="Slug de la incidencia" readonly>
+    <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" placeholder="Slug de la incidencia" readonly value="{{ old('slug', $incidencia->slug ?? '') }}">
 
     @error('slug')
         <small class="text-danger">{{ $message }}</small>
@@ -18,7 +18,7 @@
 
 <div class="form-group">
     <label for="descripcion">Descripción*:</label>
-    <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese la descripción de la incidencia">{{-- {{ $descripcion }} --}}</textarea>
+    <textarea name="descripcion" id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" placeholder="Ingrese la descripción de la incidencia">{{ old('descripcion', $incidencia->descripcion ?? '') }}</textarea>
     
     @error('descripcion')
         <small class="text-danger">{{ $message }}</small>
@@ -27,11 +27,15 @@
 
 <div class="form-group">
     <label>Categoría*</label>
-    <select class="form-control" name="categoria_id" id="categoriaSelect">
+    <select class="form-control @error('categoria_id') is-invalid @enderror" name="categoria_id" id="categoriaSelect">
         {{-- <option value="">Seleccione una categoría</option> --}}
         <option selected disabled>Selecionar Categoria</option>
         @foreach ($subcategorias->unique('categoria_id') as $subcategoria)
-            <option value="{{ $subcategoria->categoria->id }}">{{ $subcategoria->categoria->id }} - {{ $subcategoria->categoria->nombre }}</option>
+            {{-- <option value="{{ $subcategoria->categoria->id }}" {{ old('categoria_id', $post->categoria_id ?? '') == $categoria->id ? 'selected' : '' }}> --}}
+            {{-- <option value="{{ $subcategoria->categoria->id }}" {{ old('categoria_id', isset($incidencia) && $incidencia->categoria_id == $subcategoria->categoria->id ? 'selected' : '') }}> --}}
+            <option value="{{ $subcategoria->categoria->id }}" {{ old('categoria_id', $incidencia->categoria_id ?? '') == $subcategoria->categoria->id ? 'selected' : '' }}>
+                {{ $subcategoria->categoria->id }} - {{ $subcategoria->categoria->nombre }}
+            </option>
         @endforeach
     </select>
 
@@ -43,7 +47,7 @@
 
 <div class="form-group">
     <label>Subcategoría*</label>
-    <select class="form-control" name="subcategoria_id" id="subcategoriaSelect">
+    <select class="form-control @error('subcategoria_id') is-invalid @enderror" name="subcategoria_id" id="subcategoriaSelect">
         <option value="">Debe seleccionar una Categoría</option>
     </select>
 
@@ -54,14 +58,14 @@
 
 <div class="form-group">
     <label>Urgencia*</label>
-    <select class="form-control" name="emergency_id" id="emrgencia">
+    <select class="form-control @error('emergencia_id') is-invalid @enderror" name="emergencia_id" id="emergencia">
         <option selected disabled>Selecionar Urgencia</option>
         @foreach ($emergencias as $emergencia)
-            <option value="{{ $emergencia->id }}">{{ $emergencia->id }} - {{ $emergencia->nombre }}</option>
+            <option value="{{ $emergencia->id }}" {{ old('emergencia_id', $incidencia->emergencia_id ?? '') == $emergencia->id ? 'selected' : '' }}>{{ $emergencia->id }} - {{ $emergencia->nombre }}</option>
         @endforeach
     </select>
 
-    @error('categoria_id')
+    @error('emergencia_id')
         <small class="text-danger">{{ $message }}</small>
     @enderror
 </div>
