@@ -25,11 +25,14 @@
     </div>
 </div>
 
-<form action="{{ route('incidencias.store') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+<form action="{{ route('incidencias.update', $incidencia) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
 
     @csrf
+
+    @method('PUT')
     
-    @include('incidencias.partials.form')
+    {{-- @include('incidencias.partials.form') --}}
+    @include('incidencias.partials.form', ['incidencia' => $incidencia])
     
     <div class="form-group pt-2">
         <a href="{{route('incidencias.index')}}" class="btn btn-dark" title="Lista de incidencias">Volver</a>
