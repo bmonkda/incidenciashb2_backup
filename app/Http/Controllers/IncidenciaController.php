@@ -122,7 +122,39 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, Incidencia $incidencia)
     {
-        //
+        $rules = [
+            'titulo' => 'required|min:5',
+            'slug' => 'required|min:5',
+            'descripcion' => 'required|min:10',
+            'categoria_id' => 'required|exists:categorias,id',
+            'subcategoria_id' => 'required|exists:subcategorias,id',
+            'emergencia_id' => 'required|exists:emergencias,id',
+        ];
+
+        $messages = [
+            'titulo.required' => 'Es necesario ingresar un título para la incidencia',
+            'titulo.min' => 'El título debe contener al menos 5 caracteres',
+            'slug.required' => 'Es necesario ingresar el título',
+            'slug.min' => 'El título debe contener al menos 5 caracteres',
+            'descripcion.required' => 'Es necesario ingresar una descripción para la incidencia',
+            'descripcion.min' => 'La descripción debe contener al menos 10 caracteres',
+            'categoria_id.required' => 'Es necesario seleccionar una categoría',
+            'subcategoria_id.required' => 'Es necesario seleccionar una subcategoría',
+            'emergencia_id.required' => 'Es necesario seleccionar una urgencia',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $incidencia->titulo = $request->input('titulo');
+        $incidencia->slug = $request->input('slug');
+        $incidencia->descripcion = $request->input('descripcion');
+        $incidencia->categoria_id = $request->input('categoria_id');
+        $incidencia->subcategoria_id = $request->input('subcategoria_id');
+        $incidencia->emergencia_id = $request->input('emergencia_id');
+
+        $incidencia->save();
+
+        return redirect()->route('incidencias.index')->with('info', 'Incidencia actualizada con éxito');
     }
 
     /**
@@ -133,6 +165,8 @@ class IncidenciaController extends Controller
      */
     public function destroy(Incidencia $incidencia)
     {
-        //
+        $incidencia->delete();
+
+        return redirect()->route('incidencias.index')->with('info', 'Incidencia eliminada con éxito');
     }
 }
