@@ -53,9 +53,15 @@ use App\Models\Incidencia;
 //     ));
 // });
 
-Route::get('/', [HomeController::class,'index'])->name('home')->middleware('auth');
+// Route::get('/', [HomeController::class,'index'])->name('home')->middleware('auth');
 
-Route::resource('/incidencias', IncidenciaController::class);
+// Route::resource('/incidencias', IncidenciaController::class);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::resource('/incidencias', IncidenciaController::class);
+});
+
 
 Route::prefix('administrador')->group(function () {
     Route::resource('/categorias', CategoriaController::class);
@@ -65,3 +71,6 @@ Route::prefix('administrador')->group(function () {
 
 });
 
+Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');

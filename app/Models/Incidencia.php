@@ -13,7 +13,7 @@ class Incidencia extends Model
     protected $attributes = [
         'asignado_id' => null,
         'asigna_id' => null,
-        'statu_id' => 1,
+        'statu_id' => 2,
     ];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
