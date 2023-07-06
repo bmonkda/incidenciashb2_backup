@@ -78,7 +78,7 @@
         });
     </script> --}}
 
-    <script>
+    {{-- <script>
         const categoriaSelect = document.getElementById('categoria');
         const subcategoriaSelect = document.getElementById('subcategoria');
     
@@ -108,7 +108,57 @@
                 })
                 .catch(error => console.error(error));
         });
+    </script> --}}
+
+    <script>
+        const categoriaSelect = document.getElementById('categoria');
+        const subcategoriaSelect = document.getElementById('subcategoria');
+        const subcategoriaSeleccionada = '{{ old("subcategoria") }}';
+    
+        // Verificar si hay un valor seleccionado en el campo de categoría al cargar la página
+        if (categoriaSelect.value !== '') {
+            cargarSubcategorias();
+        }
+    
+        categoriaSelect.addEventListener('change', () => {
+            cargarSubcategorias();
+        });
+    
+        function cargarSubcategorias() {
+            const categoriaId = categoriaSelect.value;
+    
+            // Si no se ha seleccionado una categoría, deshabilitamos el select de subcategorías
+            if (categoriaId === '') {
+                subcategoriaSelect.innerHTML = '<option value="">Seleccione una subcategoría</option>';
+                subcategoriaSelect.disabled = true;
+                return;
+            }
+    
+            // Si se seleccionó una categoría, habilitamos el select de subcategorías y hacemos una petición Fetch para obtener las subcategorías
+            subcategoriaSelect.disabled = false;
+            fetch(`/api/categorias/${categoriaId}/subcategorias`)
+                .then(response => response.json())
+                .then(data => {
+                    subcategoriaSelect.innerHTML = '<option selected disabled>Selecionar subCategoria</option>';
+                    data.forEach(subcategoria => {
+                        const option = document.createElement('option');
+                        option.value = subcategoria.id;
+                        option.textContent = subcategoria.id + " - " + subcategoria.nombre;
+    
+                        // Verificar si el valor de la subcategoría coincide con el valor 'old' de Laravel
+                        if (subcategoria.id == subcategoriaSeleccionada) {
+                            option.selected = true; // Seleccionar la opción
+                        }
+    
+                        subcategoriaSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error(error));
+        }
     </script>
+    
+    
+    
 
    <script>
         document.addEventListener('DOMContentLoaded', function() {
