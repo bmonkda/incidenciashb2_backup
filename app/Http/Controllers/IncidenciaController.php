@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Emergencia;
 use App\Models\Incidencia;
 use App\Models\Subcategoria;
@@ -33,9 +34,10 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
+        $categorias = Categoria::all();
         $subcategorias = Subcategoria::with(['categoria'])->get();
         $emergencias = Emergencia::all();
-        return view('incidencias.create', compact('subcategorias', 'emergencias'));
+        return view('incidencias.create', compact('categorias', 'subcategorias', 'emergencias'));
     }
 
     /**
@@ -105,9 +107,11 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
-        $subcategorias = Subcategoria::with(['categoria'])->get();
+        $categorias = Categoria::all();
+        // $subcategorias = Subcategoria::with(['categoria'])->get();
+        $subcategorias = $incidencia->categoria_id ? Subcategoria::where('categoria_id', $incidencia->categoria_id)->get() : collect();
         $emergencias = Emergencia::all();
-        return view('incidencias.edit', compact('incidencia','subcategorias', 'emergencias'));
+        return view('incidencias.edit', compact('incidencia', 'categorias', 'subcategorias', 'emergencias'));
     }
 
     /**

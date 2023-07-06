@@ -27,14 +27,19 @@
 
 <div class="form-group">
     <label>Categoría*</label>
-    <select class="form-control @error('categoria_id') is-invalid @enderror" name="categoria_id" id="categoriaSelect">
+    <select class="form-control @error('categoria_id') is-invalid @enderror" name="categoria_id" id="categoria">
         {{-- <option value="">Seleccione una categoría</option> --}}
         <option selected disabled>Selecionar Categoria</option>
-        @foreach ($subcategorias->unique('categoria_id') as $subcategoria)
+        {{-- @foreach ($subcategorias->unique('categoria_id') as $subcategoria) --}}
             {{-- <option value="{{ $subcategoria->categoria->id }}" {{ old('categoria_id', $post->categoria_id ?? '') == $categoria->id ? 'selected' : '' }}> --}}
             {{-- <option value="{{ $subcategoria->categoria->id }}" {{ old('categoria_id', isset($incidencia) && $incidencia->categoria_id == $subcategoria->categoria->id ? 'selected' : '') }}> --}}
-            <option value="{{ $subcategoria->categoria->id }}" {{ old('categoria_id', $incidencia->categoria_id ?? '') == $subcategoria->categoria->id ? 'selected' : '' }}>
+            {{-- <option value="{{ $subcategoria->categoria->id }}" {{ old('categoria_id', $incidencia->categoria_id ?? '') == $subcategoria->categoria->id ? 'selected' : '' }}>
                 {{ $subcategoria->categoria->id }} - {{ $subcategoria->categoria->nombre }}
+            </option> --}}
+        {{-- @endforeach --}}
+        @foreach ($categorias as $categoria)
+            <option value="{{ $categoria->id }}" {{ old('categoria_id', $incidencia->categoria_id ?? '') == $categoria->id ? 'selected' : '' }}>
+                {{ $categoria->id }} - {{ $categoria->nombre }}
             </option>
         @endforeach
     </select>
@@ -47,8 +52,14 @@
 
 <div class="form-group">
     <label>Subcategoría*</label>
-    <select class="form-control @error('subcategoria_id') is-invalid @enderror" name="subcategoria_id" id="subcategoriaSelect">
-        <option value="">Debe seleccionar una Categoría</option>
+    <select class="form-control @error('subcategoria_id') is-invalid @enderror" name="subcategoria_id" id="subcategoria" {{ $incidencia->categoria_id ? '' : 'disabled' }}>
+        {{-- <option value="">Debe seleccionar una Categoría</option> --}}
+        <option selected disabled>Selecionar SubCategoria</option>
+        @foreach ($subcategorias as $subcategoria)
+            <option value="{{ $subcategoria->id }}" {{ old('subcategoria', $incidencia->subcategoria_id) == $subcategoria->id ? 'selected' : '' }}>
+                {{ $subcategoria->id }} - {{ $subcategoria->nombre }}
+            </option>
+        @endforeach
     </select>
 
     @error('subcategoria_id')

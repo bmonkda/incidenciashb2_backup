@@ -50,7 +50,7 @@
     <script src="{{asset('template/assets/js/elements/tooltip.js')}}"></script>
     <script src="{{asset('template/plugins/table/datatable/datatables.js')}}"></script>
     
-    <script>
+    {{-- <script>
         document.getElementById('categoriaSelect').addEventListener('change', function() {
             var categoriaId = this.value;
             var subcategoriaSelect = document.getElementById('subcategoriaSelect');
@@ -75,6 +75,38 @@
                         console.error('Error:', error);
                     });
             }
+        });
+    </script> --}}
+
+    <script>
+        const categoriaSelect = document.getElementById('categoria');
+        const subcategoriaSelect = document.getElementById('subcategoria');
+    
+        categoriaSelect.addEventListener('change', () => {
+            const categoriaId = categoriaSelect.value;
+    
+            // Si no se ha seleccionado una categoría, deshabilitamos el select de subcategorías
+            if (categoriaId === '') {
+                subcategoriaSelect.innerHTML = '<option value="">Seleccione una subcategoría</option>';
+                subcategoriaSelect.disabled = true;
+                return;
+            }
+    
+            // Si se seleccionó una categoría, habilitamos el select de subcategorías y hacemos una petición Fetch para obtener las subcategorías
+            subcategoriaSelect.disabled = false;
+            fetch(`/api/categorias/${categoriaId}/subcategorias`)
+                .then(response => response.json())
+                .then(data => {
+                    // subcategoriaSelect.innerHTML = '<option value="">Seleccione una subcategoría</option>';
+                    subcategoriaSelect.innerHTML = '<option selected disabled>Selecionar subCategoria</option>';
+                    data.forEach(subcategoria => {
+                        const option = document.createElement('option');
+                        option.value = subcategoria.id;
+                        option.textContent = subcategoria.id + " - " + subcategoria.nombre;
+                        subcategoriaSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error(error));
         });
     </script>
 
