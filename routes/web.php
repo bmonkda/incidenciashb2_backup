@@ -63,14 +63,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::prefix('administrador')->group(function () {
+/* Route::prefix('administrador')->group(function () {
     Route::resource('/categorias', CategoriaController::class);
     Route::resource('/subcategorias', SubcategoriaController::class);
     Route::resource('/estatus', StatuController::class);
     Route::resource('/emergencias', EmergenciaController::class);
 
-});
+}); */
 
-Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
+// Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
+//     ->middleware('auth')
+//     ->name('logout');

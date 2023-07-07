@@ -13,7 +13,7 @@
             <h6 class="text-white font-weight-bold mt-2">Bienvenido al listado de categorias</h6>
         </div>
         <div class="col-md-6">
-            <a href="{{route('categorias.create')}}" class="btn btn-light btn-lg float-md-right" role="button" aria-pressed="true">Crear categoria</a>
+            <a href="{{route('admin.categorias.create')}}" class="btn btn-light btn-lg float-md-right" role="button" aria-pressed="true">Crear categoria</a>
         </div>
     </div>
 <div class="table-responsive mb-4 mt-4">
@@ -31,13 +31,13 @@
 				<td>{{$categoria->id}}</td>
 				<td>{{$categoria->nombre}}</td>
 				<td>
-                    <a class="bs-tooltip" href="{{route('categorias.show', $categoria)}}" title="Mostrar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+                    <a class="bs-tooltip" href="{{route('admin.categorias.show', $categoria)}}" title="Mostrar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                             <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg></a>
 
-                    <a class="bs-tooltip" href="{{route('categorias.edit', $categoria)}}" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg><span class="icon-name"></span> </a>
-                    <a class="bs-tooltip" href="{{route('categorias.destroy', $categoria)}}" title="Eliminar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></a>
+                    <a class="bs-tooltip" href="{{route('admin.categorias.edit', $categoria)}}" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg><span class="icon-name"></span> </a>
+                    <a class="bs-tooltip" href="{{route('admin.categorias.destroy', $categoria)}}" title="Eliminar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></a>
                 </td>
 			</tr>
 			@endforeach

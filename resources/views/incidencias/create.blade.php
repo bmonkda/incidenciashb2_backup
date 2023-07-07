@@ -78,7 +78,7 @@
         });
     </script> --}}
 
-    {{-- <script>
+    <script>
         const categoriaSelect = document.getElementById('categoria');
         const subcategoriaSelect = document.getElementById('subcategoria');
     
@@ -108,9 +108,9 @@
                 })
                 .catch(error => console.error(error));
         });
-    </script> --}}
+    </script>
 
-    <script>
+    {{-- <script>
         const categoriaSelect = document.getElementById('categoria');
         const subcategoriaSelect = document.getElementById('subcategoria');
         const subcategoriaSeleccionada = '{{ old("subcategoria") }}';
@@ -155,7 +155,7 @@
                 })
                 .catch(error => console.error(error));
         }
-    </script>
+    </script> --}}
     
     
     
