@@ -16,6 +16,11 @@
     <link href="{{asset('template/plugins/tagInput/tags-input.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
+@if(session('info'))
+    <div class="alert alert-success">
+        {{ session('info') }}
+    </div>
+@endif
 
 @section('content')
 {{-- <div class="row">
