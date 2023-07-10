@@ -80,3 +80,12 @@
         <small class="text-danger">{{ $message }}</small>
     @enderror
 </div>
+
+<div class="form-group">
+    <label for="archivo">Archivo:</label>
+    <input type="file" name="archivo" id="archivo" class="form-control @error('archivo') is-invalid @enderror">
+
+    @error('archivo')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
+</div>
