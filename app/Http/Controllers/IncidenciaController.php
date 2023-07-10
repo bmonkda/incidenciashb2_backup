@@ -9,6 +9,9 @@ use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
+
 class IncidenciaController extends Controller
 {
     /**
@@ -55,6 +58,7 @@ class IncidenciaController extends Controller
             'categoria_id' => 'required|exists:categorias,id',
             'subcategoria_id' => 'required|exists:subcategorias,id',
             'emergencia_id' => 'required|exists:emergencias,id',
+            'archivo' => 'nullable|mimes:jpeg,jpg,png,doc,docx,xls,xlsx,csv,pdf',
         ];
 
         $messages = [
@@ -67,7 +71,7 @@ class IncidenciaController extends Controller
             'categoria_id.required' => 'Es necesario seleccionar una categoría',
             'subcategoria_id.required' => 'Es necesario seleccionar una subcategoría',
             'emergencia_id.required' => 'Es necesario seleccionar tipo urgencia',
-            
+            'archivo.mimes' => 'El archivo debe ser de tipo JPEG, JPG, PNG, DOC, DOCX, XLS, XLSX, CSV o PDF',
         ];
         
         $this->validate($request, $rules, $messages);
@@ -80,7 +84,25 @@ class IncidenciaController extends Controller
         $incidencia->subcategoria_id = $request->input('subcategoria_id');
         $incidencia->emergencia_id = $request->input('emergencia_id');
 
-        $incidencia->user_id = auth()->user()->idusuario;
+        $incidencia->user_id = auth()->user()->idusuario; //usuario que crea la incidencia
+
+        // Procesar y guardar el archivo
+        if ($request->hasFile('archivo')) {
+            $archivo = $request->file('archivo');
+            $extension = $archivo->getClientOriginalExtension();
+            $nombreArchivo = $archivo->getClientOriginalName();
+
+            // Verificar que el nombre de archivo no contenga más de un punto
+            if (substr_count($nombreArchivo, '.') > 1) {
+                return redirect()->back()->withErrors(['archivo' => 'El nombre del archivo no puede contener más de un punto']);
+            }
+
+            // Guardar el archivo en una ubicación específica
+            $archivo->storeAs('ruta_de_almacenamiento', $nombreArchivo);
+            
+            $incidencia->archivo = $nombreArchivo;
+            $incidencia->extension = $extension;
+        }
 
         $incidencia->saveOrFail();
 
