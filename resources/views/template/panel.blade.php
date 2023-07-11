@@ -23,7 +23,7 @@
                 <p class="s-counter-text">Estatus:</p>
             </div>
             <button style="background: transparent !important; border: none !important; padding: 0;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                <span class="badge outline-badge-primary"> {{$estatuscreado->nombre}} </span>
+                <span class="badge outline-badge-primary"> {{-- {{$estatuscreado->nombre}} --}} CREADA </span>
             </button>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,12 +135,12 @@
             <h5 class="info-heading">Incidencias</h5>
             <div class="counter-container">
                 <div class="counter-content">
-                    <h1 class="s-counter3 s-counter">{{$incidenciasaignadocount}}</h1>
+                    <h1 class="s-counter3 s-counter">{{$incidenciasasignadocount}}</h1>
                 </div>
                 <p class="s-counter-text">Estatus:</p>
             </div>
             <button style="background: transparent !important; border: none !important; padding: 0;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
-                <span class="badge badge-primary"> {{$estatusaignado->nombre}} </span>
+                <span class="badge badge-primary"> {{$estatusasignado->nombre}} </span>
             </button>
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
@@ -163,7 +163,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($incidenciasaignado as $creada)
+                                    @foreach($incidenciasasignado as $creada)
                                         <tr>
                                             <td>{{$creada->id}}</td>
                                             <td>{{$creada->titulo}}</td>
@@ -302,7 +302,7 @@
 </div>
 <div class="row mt-5">
     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-        <h4>Listado de incidencias creadas</h4>
+        <h4>Listado de incidencias en espera</h4>
     </div>
 </div>
 <div class="table-responsive">
@@ -316,12 +316,12 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($incidenciascreadas as $creada)
+        @foreach($incidenciasespera as $espera)
         <tr class="table-primary">
-            <td class="text-dark">{{$creada->id}}</td>
-            <td class="text-dark">{{$creada->titulo}}</td>
-            <td class="text-dark">{{$creada->descripcion}}</td>
-            <td class="text-center"><span class="badge outline-badge-primary" style="background-color: white"> {{$creada->statu->nombre}} </span></td>
+            <td class="text-dark">{{$espera->id}}</td>
+            <td class="text-dark">{{$espera->titulo}}</td>
+            <td class="text-dark">{{$espera->descripcion}}</td>
+            <td class="text-center"><span class="badge outline-badge-primary" style="background-color: white"> {{$espera->statu->nombre}} </span></td>
         </tr>
         @endforeach
         </tbody>

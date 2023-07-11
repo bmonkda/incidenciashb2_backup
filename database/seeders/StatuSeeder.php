@@ -15,11 +15,11 @@ class StatuSeeder extends Seeder
      */
     public function run()
     {
-        $statu = Statu::create([
-            'nombre' => 'CREADO',
-            'color' => 'none',
-            'color2' => '#d1d1d1',
-        ]);
+        // $statu = Statu::create([
+        //     'nombre' => 'CREADO',
+        //     'color' => 'none',
+        //     'color2' => '#d1d1d1',
+        // ]);
         $statu = Statu::create([
             'nombre' => 'EN ESPERA',
             'color' => 'warning',
