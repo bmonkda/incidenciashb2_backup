@@ -29,10 +29,10 @@
                                 <a href="{{route('admin.subcategorias.index')}}"> Subcategorias </a>
                             </li>
                             <li>
-                                {{-- <a href="{{route('admin.estatus.index')}}"> Estatus </a> --}}
+                                <a href="{{route('admin.estatus.index')}}"> Estatus </a>
                             </li>
                             <li>
-                                {{-- <a href="{{route('admin.emergencias.index')}}"> Emergencia </a> --}}
+                                <a href="{{route('admin.emergencias.index')}}"> Emergencia </a>
                             </li>
                         </ul>
                     </li>

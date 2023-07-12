@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\EmergenciaController;
+use App\Http\Controllers\StatuController;
 use App\Http\Controllers\SubcategoriaController;
+use App\Models\Emergencia;
 use App\Models\Estatu;
-
+use App\Models\Statu;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +28,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])/* ->middleware('can:admin.home') */->name('admin.home');
 
-Route::resource('categorias', CategoriaController::class)->except('show')->names('admin.categorias');
+Route::resource('categorias', CategoriaController::class)/* ->except('show') */->names('admin.categorias');
 
-Route::resource('subcategorias', SubcategoriaController::class)->except('show')->names('admin.subcategorias');
+Route::resource('subcategorias', SubcategoriaController::class)/* ->except('show') */->names('admin.subcategorias');
+
+Route::resource('estatus', StatuController::class)/* ->except('show') */->names('admin.estatus');
+
+Route::resource('emergencias', EmergenciaController::class)/* ->except('show') */->names('admin.emergencias');
 
 // Route::resource('modos', ModoController::class)->except('show')->names('admin.modos');
 // Route::resource('estatus', EstatuController::class)->except('show')->names('admin.estatus');

@@ -14,10 +14,10 @@ class Categoria extends Model
 
     // para url amigable
 
-    /*public function getRouteKeyName()
+    public function getRouteKeyName()
     {
         return 'slug';
-    }*/
+    }
 
     // Relación uno a muchos
 

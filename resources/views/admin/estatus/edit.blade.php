@@ -6,7 +6,7 @@
 
 @section('content')
     @include('template.layouts.addons.errores')
-    <form method="POST" action="{{route('estatus.update', $statu)}}">
+    <form method="POST" action="{{route('admin.estatus.update', $statu)}}">
         @method('PUT')
         @csrf
         <h4>Edicion de Estatus</h4>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group pt-2">
-            <a href="{{route('estatus.index')}}" class="btn btn-dark">Volver</a>
+            <a href="{{route('admin.estatus.index')}}" class="btn btn-dark">Volver</a>
             <input class="btn btn-primary" type="submit" value="Guardar">
         </div>
     </form>

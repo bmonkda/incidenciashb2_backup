@@ -15,7 +15,7 @@ class EmergenciaController extends Controller
     public function index()
     {
         $emergencias = Emergencia::all();
-        return view('admin.emergencias.page', compact('emergencias'));
+        return view('admin.emergencias.index', compact('emergencias'));
     }
 
     /**

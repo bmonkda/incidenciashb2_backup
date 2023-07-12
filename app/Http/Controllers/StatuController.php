@@ -15,7 +15,7 @@ class StatuController extends Controller
     public function index()
     {
         $estatus = Statu::all();
-        return view('admin.estatus.page', compact('estatus'));
+        return view('admin.estatus.index', compact('estatus'));
     }
 
     /**

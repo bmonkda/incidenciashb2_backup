@@ -6,7 +6,7 @@
 
 @section('content')
     @include('template.layouts.addons.errores')
-    <form method="POST" action="{{route('categorias.store')}}">
+    <form method="POST" action="{{route('admin.categorias.store')}}">
         @csrf
         <h4>Creacion de categoria</h4>
         <div class="form-group mb-4">
@@ -14,11 +14,11 @@
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre de la categoria">
         </div>
         <div class="form-group mb-4">
-            <label for="ruta">Ruta</label>
+            <label for="ruta">Slug</label>
             <input type="text" class="form-control" id="ruta" name="ruta" placeholder="">
         </div>
         <div class="form-group pt-2">
-            <a href="{{route('categorias.index')}}" class="btn btn-dark">Volver</a>
+            <a href="{{route('admin.categorias.index')}}" class="btn btn-dark">Volver</a>
             <input class="btn btn-primary" type="submit" value="Guardar">
         </div>
     </form>

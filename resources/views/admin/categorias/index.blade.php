@@ -10,7 +10,7 @@
     @include('template.layouts.addons.status')
     <div class="row">
         <div class="col-md-6">
-            <h6 class="text-white font-weight-bold mt-2">Bienvenido al listado de categorias</h6>
+            <h6 class="text-white font-weight-bold mt-2">Listado de categorias</h6>
         </div>
         <div class="col-md-6">
             <a href="{{route('admin.categorias.create')}}" class="btn btn-light btn-lg float-md-right" role="button" aria-pressed="true">Crear categoria</a>
