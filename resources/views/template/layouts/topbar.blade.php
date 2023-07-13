@@ -21,23 +21,29 @@
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
-                            <li>
-                                <a href="{{route('admin.categorias.index')}}"> Categorias </a>
-                            </li>
-                            <li>
-                                <a href="{{route('admin.subcategorias.index')}}"> Subcategorias </a>
-                            </li>
-                            <li>
-                                <a href="{{route('admin.estatus.index')}}"> Estatus </a>
-                            </li>
-                            <li>
-                                <a href="{{route('admin.emergencias.index')}}"> Emergencia </a>
-                            </li>
-                        </ul>
+
+                        @if ( Auth::user()->esGerente() )
+                        
+                            <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
+                                <li>
+                                    <a href="{{route('admin.categorias.index')}}"> Categorias </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('admin.subcategorias.index')}}"> Subcategorias </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('admin.estatus.index')}}"> Estatus </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('admin.emergencias.index')}}"> Emergencia </a>
+                                </li>
+                            </ul>
+
+                        @endif
+
                     </li>
-
-
+                    
+                    
                     <li class="menu single-menu">
                         <a href="javascript:void(0);" data-toggle="" aria-expanded="" class="dropdown-toggle autodroprown">
                             <div class="">
