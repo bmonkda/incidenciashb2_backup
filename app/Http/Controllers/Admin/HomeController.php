@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $estatuscreado = Statu::find(1);
+        // $estatuscreado = Statu::find(1);
         $estatusespera = Statu::find(1);
         $estatusasignado = Statu::find(2);
         $estatuscerrare = Statu::find(3);
@@ -31,7 +31,7 @@ class HomeController extends Controller
         $incidenciascerranocount = Incidencia::where('statu_id', $estatuscerrano->id)->count();
 
         return view('template.panel', compact(
-            'estatuscreado',
+            // 'estatuscreado',
             'estatusespera',
             'estatusasignado',
             'estatuscerrare',
