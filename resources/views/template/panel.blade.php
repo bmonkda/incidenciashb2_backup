@@ -26,6 +26,7 @@
                 <span class="badge outline-badge-primary"> {{-- {{$estatuscreado->nombre}} --}} CREADA </span>
             </button>
 
+            {{-- modal incidncias creadas --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
@@ -84,6 +85,8 @@
             <button style="background: transparent !important; border: none !important; padding: 0;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
                 <span class="badge badge-warning"> {{$estatusespera->nombre}} </span>
             </button>
+
+            {{-- modal incidncias en espera --}}
             <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
@@ -142,6 +145,8 @@
             <button style="background: transparent !important; border: none !important; padding: 0;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
                 <span class="badge badge-primary"> {{$estatusasignado->nombre}} </span>
             </button>
+
+            {{-- modal incidncias asignadas --}}
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
@@ -200,6 +205,8 @@
             <button style="background: transparent !important; border: none !important; padding: 0;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
                 <span class="badge badge-success"> {{$estatuscerrare->nombre}} </span>
             </button>
+
+            {{-- modal incidncias cerrada (resuelta) --}}
             <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
@@ -258,6 +265,8 @@
             <button style="background: transparent !important; border: none !important; padding: 0;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4">
                 <span class="badge badge-danger"> {{$estatuscerrano->nombre}} </span>
             </button>
+
+            {{-- modal incidncias cerrada (no resuelta) --}}
             <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
@@ -313,15 +322,36 @@
             <th class="text-dark">Titulo</th>
             <th class="text-dark">Descripcion</th>
             <th class="text-center text-dark">Status</th>
+            <th class="text-center text-dark">Acciones</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($incidenciasespera as $espera)
+        @foreach($incidenciasespera as $incidencia)
         <tr class="table-primary">
-            <td class="text-dark">{{$espera->id}}</td>
-            <td class="text-dark">{{$espera->titulo}}</td>
-            <td class="text-dark">{{$espera->descripcion}}</td>
-            <td class="text-center"><span class="badge outline-badge-primary" style="background-color: white"> {{$espera->statu->nombre}} </span></td>
+            <td class="text-dark">{{$incidencia->id}}</td>
+            <td class="text-dark">{{$incidencia->titulo}}</td>
+            <td class="text-dark">{{$incidencia->descripcion}}</td>
+            <td class="text-center"><span class="badge outline-badge-primary" style="background-color: white"> {{$incidencia->statu->nombre}} </span></td>
+            <td class="text-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <a class="bs-tooltip" href="{{route('admin.incidencias.show', $incidencia)}}" title="Mostrar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0960DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+                        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg></a>
+                    <a class="bs-tooltip" href="{{route('admin.incidencias.edit', $incidencia->id)}}" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1C10F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg><span class="icon-name"></span> </a>
+                    <form class="delete-form" action="{{route('admin.incidencias.destroy', $incidencia)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bs-tooltip" title="Eliminar" style="background: none; border: none; cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </td>
         </tr>
         @endforeach
         </tbody>

@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\IncidenciaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EmergenciaController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Models\Emergencia;
 use App\Models\Estatu;
+use App\Models\Incidencia;
 use App\Models\Statu;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +37,8 @@ Route::resource('subcategorias', SubcategoriaController::class)/* ->except('show
 Route::resource('estatus', StatuController::class)/* ->except('show') */->names('admin.estatus');
 
 Route::resource('emergencias', EmergenciaController::class)/* ->except('show') */->names('admin.emergencias');
+
+Route::resource('incidencias', IncidenciaController::class)/* ->except('show') */->names('admin.incidencias');
 
 // Route::resource('modos', ModoController::class)->except('show')->names('admin.modos');
 // Route::resource('estatus', EstatuController::class)->except('show')->names('admin.estatus');
