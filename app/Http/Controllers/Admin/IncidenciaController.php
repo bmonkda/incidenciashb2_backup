@@ -8,11 +8,13 @@ use App\Models\Emergencia;
 use App\Models\Incidencia;
 use App\Models\Statu;
 use App\Models\Subcategoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\DB;
 
 class IncidenciaController extends Controller
 {
@@ -172,7 +174,19 @@ class IncidenciaController extends Controller
         $subcategorias = $incidencia->categoria_id ? Subcategoria::where('categoria_id', $incidencia->categoria_id)->get() : collect();
         $emergencias = Emergencia::all();
         $status = Statu::all();
-        return view('admin.incidencias.edit', compact('incidencia', 'categorias', 'subcategorias', 'emergencias', 'status'));
+
+        $tecnologiaUsers = DB::connection('rrhh')->table('rrhh.vis_exp_datos_empleado')
+
+                            ->where('idgerencia', 901)
+                            // ->where('idstatus', 1)
+                            ->orderBy('nombre', 'ASC')
+                            // ->latest('nombre')
+                            ->pluck('nombre', 'idusuario');
+                            // ->get();
+
+                        // return $tecnologiaUsers;
+
+        return view('admin.incidencias.edit', compact('incidencia', 'categorias', 'subcategorias', 'emergencias', 'status', 'tecnologiaUsers'));
     }
 
     /**

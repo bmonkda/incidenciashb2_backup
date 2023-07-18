@@ -32,7 +32,7 @@
     @method('PUT')
     
     {{-- @include('incidencias.partials.form') --}}
-    @include('incidencias.partials.form', ['incidencia' => $incidencia])
+    @include('admin.incidencias.partials.form', ['incidencia' => $incidencia])
     
     <div class="form-group pt-2">
         <a href="{{route('admin.incidencias.index')}}" class="btn btn-dark" title="Lista de incidencias">Volver</a>

@@ -81,25 +81,6 @@
     @enderror
 </div>
 
-@if (Auth::user()->esGerente())
-    
-<div class="form-group">
-    <label>Statu:</label>
-    <select class="form-control @error('statu_id') is-invalid @enderror" name="statu_id" id="statu">
-        <option selected disabled>Selecionar Urgencia</option>
-        @foreach ($status as $statu)
-            <option value="{{ $statu->id }}" {{ old('statu_id', $incidencia->statu_id ?? '') == $statu->id ? 'selected' : '' }}>{{ $statu->id }} - {{ $statu->nombre }}</option>
-        @endforeach
-    </select>
-
-    @error('statu_id')
-        <small class="text-danger">{{ $message }}</small>
-    @enderror
-</div>
-    
-
-@endif
-
 <div class="form-group">
     <label for="archivo">Archivo:</label>
     <input type="file" name="archivo" id="archivo" class="form-control @error('archivo') is-invalid @enderror">

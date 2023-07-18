@@ -89,3 +89,37 @@
         <small class="text-danger">{{ $message }}</small>
     @enderror
 </div>
+
+@if (Auth::user()->esAdmin())
+    
+    <div class="form-group">
+        <label>Statu:</label>
+        <select class="form-control @error('statu_id') is-invalid @enderror" name="statu_id" id="statu">
+            <option selected disabled>Selecionar statu</option>
+            @foreach ($status as $statu)
+                <option value="{{ $statu->id }}" {{ old('statu_id', $incidencia->statu_id ?? '') == $statu->id ? 'selected' : '' }}>{{ $statu->id }} - {{ $statu->nombre }}</option>
+            @endforeach
+        </select>
+
+        @error('statu_id')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label>Asiganado a:</label>
+        <select class="form-control @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
+            <option selected disabled>Selecione una opción</option>
+            @foreach ($tecnologiaUsers as $idUsuario => $nombre)
+                {{-- <option value="{{ $tecnologiaUser/* ->idusuario */ }}" {{ old('user_id', $incidencia->user_id ?? '') == $tecnologiaUser/* ->idusuario */ ? 'selected' : '' }}>{{ $tecnologiaUser->id }} - {{ $tecnologiaUser/* ->nombre */ }}</option> --}}
+                <option value="{{ $idUsuario/* ->idusuario */ }}" {{ old('user_id', $incidencia->user_id ?? '') == $idUsuario/* ->idusuario */ ? 'selected' : '' }}>{{ $idUsuario }} - {{ $nombre/* ->nombre */ }}</option>
+            @endforeach
+        </select>
+
+        @error('user_id')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
+    </div>
+    
+
+@endif
