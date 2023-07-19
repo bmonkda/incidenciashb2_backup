@@ -6,7 +6,7 @@
 
 @section('content')
     @include('template.layouts.addons.errores')
-    <form method="POST" action="{{route('subcategorias.update', $subcategoria)}}">
+    <form method="POST" action="{{route('admin.subcategorias.update', $subcategoria)}}">
         @csrf
         @method('PUT')
         <h4>Edicion de Subcategoria</h4>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group pt-2">
-            <a href="{{route('subcategorias.index')}}" class="btn btn-dark">Volver</a>
+            <a href="{{route('admin.subcategorias.index')}}" class="btn btn-dark">Volver</a>
             <input class="btn btn-primary" type="submit" value="Guardar">
         </div>
     </form>
